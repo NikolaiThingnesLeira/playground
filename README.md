@@ -10,7 +10,7 @@ This repo holds only the **renderable assets**. Orchestration lives elsewhere.
 
 ```
 motion/
-  status/      status badges (queued / creating / running / success / failed / warning)
+  status/      status badges (queued / creating / running / failed / warning)
 ```
 
 Reference an asset by its raw URL, e.g.:
