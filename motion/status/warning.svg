@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Warning">
+  <title>Warning</title>
+  <style>
+    /* Warning triangle pops in with a small overshoot, then holds.
+       Amber #FDBB2F fill paired with brand-red #E32D22 stroke + exclamation:
+       amber alone is ~1.6:1 on white (invisible), so the red outline and "!"
+       carry the shape on both GitHub light and dark themes (ADR-0004). */
+    .warn-group {
+      transform-box: fill-box;
+      transform-origin: center;
+      transform: scale(0);
+      animation: digg-pop .55s cubic-bezier(.2,.8,.3,1.4) forwards;
+    }
+    @keyframes digg-pop {
+      from { transform: scale(0); }
+      to   { transform: scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .warn-group { animation: none; transform: scale(1); }
+    }
+  </style>
+  <g class="warn-group">
+    <polygon points="32,8 8,56 56,56" fill="#FDBB2F" stroke="#E32D22" stroke-width="2.5" stroke-linejoin="round"/>
+    <rect x="30" y="22" width="4" height="16" rx="2" fill="#E32D22"/>
+    <circle cx="32" cy="44" r="3" fill="#E32D22"/>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Success">
+  <title>Success</title>
+  <style>
+    /* Checkmark draws in once, then holds: finite action completed successfully.
+       Transparent + theme-safe: brand red only, no surface fill. */
+    .check {
+      fill: none;
+      stroke: #E32D22;
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 62;
+      stroke-dashoffset: 62;
+      animation: digg-draw .65s ease-out .1s forwards;
+    }
+    @keyframes digg-draw { to { stroke-dashoffset: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .check { animation: none; stroke-dashoffset: 0; }
+    }
+  </style>
+  <!-- path length ≈ 19.8 + 39.7 = 59.5; dasharray 62 covers the full path -->
+  <path class="check" d="M12 33 L26 47 L52 17"/>
+</svg>

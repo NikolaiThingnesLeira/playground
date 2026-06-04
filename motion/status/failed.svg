@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Failed">
+  <title>Failed</title>
+  <style>
+    /* Two lines draw in staggered, then the group shakes once and holds.
+       Transparent + theme-safe: brand red only, no surface fill. */
+    .x-line {
+      fill: none;
+      stroke: #E32D22;
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+    }
+    /* line length ≈ 45.3; dasharray 48 covers it */
+    .x-line:first-child  { animation: digg-draw .4s ease-out       forwards; }
+    .x-line:nth-child(2) { animation: digg-draw .4s ease-out .15s  forwards; }
+    @keyframes digg-draw { to { stroke-dashoffset: 0; } }
+
+    .x-group {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: digg-shake .45s ease-out .7s forwards;
+    }
+    @keyframes digg-shake {
+      0%   { transform: translateX(0); }
+      20%  { transform: translateX(-5px); }
+      40%  { transform: translateX(5px); }
+      60%  { transform: translateX(-3px); }
+      80%  { transform: translateX(2px); }
+      100% { transform: translateX(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .x-line  { animation: none; stroke-dashoffset: 0; }
+      .x-group { animation: none; }
+    }
+  </style>
+  <g class="x-group">
+    <line class="x-line" x1="16" y1="16" x2="48" y2="48"/>
+    <line class="x-line" x1="48" y1="16" x2="16" y2="48"/>
+  </g>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Queued">
+  <title>Queued</title>
+  <style>
+    /* Three dots breathing: "materials on site, waiting to start."
+       Transparent + theme-safe: brand red only, no surface fill. */
+    .dot {
+      fill: #E32D22;
+      animation: digg-breathe 1.8s ease-in-out infinite;
+    }
+    @keyframes digg-breathe {
+      0%, 100% { opacity: 0.3; }
+      50%       { opacity: 1;   }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .dot { animation: none; opacity: 0.7; }
+    }
+  </style>
+  <circle class="dot" cx="20" cy="32" r="6" style="animation-delay:0s"/>
+  <circle class="dot" cx="32" cy="32" r="6" style="animation-delay:.3s"/>
+  <circle class="dot" cx="44" cy="32" r="6" style="animation-delay:.6s"/>
+</svg>
