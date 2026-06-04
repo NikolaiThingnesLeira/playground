@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Creating">
+  <title>Creating</title>
+  <style>
+    /* Transparent canvas: no surface fill, so the badge sits on GitHub's own
+       background (light or dark). The 2px gaps between bricks read as mortar on
+       either theme. Brand red #E32D22 has >4:1 contrast on both white and the
+       GitHub dark surface, so no per-theme variant is needed (theme-safe). */
+    .brick {
+      fill: #E32D22;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: digg-lay 3.6s ease-in-out infinite;
+      opacity: 0;
+    }
+    /* Lay each brick: drop in from above, hold, then clear for the next cycle.
+       Staggered delays make the wall build bottom-up, left-to-right, on a loop. */
+    @keyframes digg-lay {
+      0%   { opacity: 0; transform: translateY(-10px); }
+      10%  { opacity: 1; transform: translateY(0); }
+      82%  { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(0); }
+    }
+
+    /* Respect reduced-motion: hold the finished wall. */
+    @media (prefers-reduced-motion: reduce) {
+      .brick { animation: none; opacity: 1; transform: none; }
+    }
+  </style>
+
+  <!-- course 0 (bottom), running-bond pattern A -->
+  <rect class="brick" x="9"  y="46" width="14" height="8" rx="1" style="animation-delay:0s"/>
+  <rect class="brick" x="25" y="46" width="14" height="8" rx="1" style="animation-delay:.18s"/>
+  <rect class="brick" x="41" y="46" width="14" height="8" rx="1" style="animation-delay:.36s"/>
+
+  <!-- course 1, pattern B (offset, half-bricks at the ends) -->
+  <rect class="brick" x="9"  y="35" width="6"  height="8" rx="1" style="animation-delay:.54s"/>
+  <rect class="brick" x="17" y="35" width="14" height="8" rx="1" style="animation-delay:.72s"/>
+  <rect class="brick" x="33" y="35" width="14" height="8" rx="1" style="animation-delay:.90s"/>
+  <rect class="brick" x="49" y="35" width="6"  height="8" rx="1" style="animation-delay:1.08s"/>
+
+  <!-- course 2, pattern A -->
+  <rect class="brick" x="9"  y="24" width="14" height="8" rx="1" style="animation-delay:1.26s"/>
+  <rect class="brick" x="25" y="24" width="14" height="8" rx="1" style="animation-delay:1.44s"/>
+  <rect class="brick" x="41" y="24" width="14" height="8" rx="1" style="animation-delay:1.62s"/>
+
+  <!-- course 3 (top), pattern B -->
+  <rect class="brick" x="9"  y="13" width="6"  height="8" rx="1" style="animation-delay:1.80s"/>
+  <rect class="brick" x="17" y="13" width="14" height="8" rx="1" style="animation-delay:1.98s"/>
+  <rect class="brick" x="33" y="13" width="14" height="8" rx="1" style="animation-delay:2.16s"/>
+  <rect class="brick" x="49" y="13" width="6"  height="8" rx="1" style="animation-delay:2.34s"/>
+</svg>

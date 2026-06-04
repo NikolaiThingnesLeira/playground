@@ -1,51 +1,53 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Running">
   <title>Running</title>
   <style>
-    /* Transparent canvas: no surface fill, so the badge sits on GitHub's own
-       background (light or dark). The 2px gaps between bricks read as mortar on
-       either theme. Brand red #E32D22 has >4:1 contrast on both white and the
-       GitHub dark surface, so no per-theme variant is needed (theme-safe). */
-    .brick {
-      fill: #E32D22;
-      transform-box: fill-box;
-      transform-origin: center;
-      animation: digg-lay 2.4s ease-in-out infinite;
-      opacity: 0;
-    }
-    /* Lay each brick: drop in from above, hold, then clear for the next cycle.
-       Staggered delays make the wall build bottom-up, left-to-right, on a loop. */
-    @keyframes digg-lay {
-      0%   { opacity: 0; transform: translateY(-10px); }
-      10%  { opacity: 1; transform: translateY(0); }
-      82%  { opacity: 1; transform: translateY(0); }
-      100% { opacity: 0; transform: translateY(0); }
+    /* "Topping out": the wall is finished and a flag is planted on top — the
+       construction tradition for a completed building. Plays ONCE and holds
+       (animation-fill-mode: forwards, default iteration-count: 1), so a healthy
+       running state settles instead of looping. Transparent + theme-safe: brand
+       red #E32D22 only, >4:1 on both GitHub light and dark; 2px gaps read as
+       mortar on either theme. */
+    .brick, .pole, .flag { fill: #E32D22; transform-box: fill-box; }
+
+    /* Wall: finished quickly, bottom-up, then holds. */
+    .brick { opacity: 0; transform-origin: center; animation: digg-set .65s ease-out forwards; }
+    @keyframes digg-set {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Respect reduced-motion: hold the finished wall. */
+    /* Flagpole: rises out of the top course, then holds. */
+    .pole { transform-origin: 50% 100%; transform: scaleY(0); animation: digg-raise .5s ease-out .95s forwards; }
+    @keyframes digg-raise { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+
+    /* Flag: unfurls from the pole with a small happy overshoot, then holds. */
+    .flag { transform-origin: 0% 50%; transform: scaleX(0); animation: digg-unfurl .56s cubic-bezier(.2,.8,.3,1.4) 1.45s forwards; }
+    @keyframes digg-unfurl { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+    /* Respect reduced-motion: show the finished, topped-out wall immediately. */
     @media (prefers-reduced-motion: reduce) {
-      .brick { animation: none; opacity: 1; transform: none; }
+      .brick, .pole, .flag { animation: none; opacity: 1; transform: none; }
     }
   </style>
 
-  <!-- course 0 (bottom), running-bond pattern A -->
+  <!-- finished wall: 3 running-bond courses -->
+  <!-- course 0 (bottom), pattern A -->
   <rect class="brick" x="9"  y="46" width="14" height="8" rx="1" style="animation-delay:0s"/>
-  <rect class="brick" x="25" y="46" width="14" height="8" rx="1" style="animation-delay:.12s"/>
-  <rect class="brick" x="41" y="46" width="14" height="8" rx="1" style="animation-delay:.24s"/>
+  <rect class="brick" x="25" y="46" width="14" height="8" rx="1" style="animation-delay:.08s"/>
+  <rect class="brick" x="41" y="46" width="14" height="8" rx="1" style="animation-delay:.16s"/>
 
   <!-- course 1, pattern B (offset, half-bricks at the ends) -->
-  <rect class="brick" x="9"  y="35" width="6"  height="8" rx="1" style="animation-delay:.36s"/>
-  <rect class="brick" x="17" y="35" width="14" height="8" rx="1" style="animation-delay:.48s"/>
-  <rect class="brick" x="33" y="35" width="14" height="8" rx="1" style="animation-delay:.60s"/>
-  <rect class="brick" x="49" y="35" width="6"  height="8" rx="1" style="animation-delay:.72s"/>
+  <rect class="brick" x="9"  y="35" width="6"  height="8" rx="1" style="animation-delay:.24s"/>
+  <rect class="brick" x="17" y="35" width="14" height="8" rx="1" style="animation-delay:.32s"/>
+  <rect class="brick" x="33" y="35" width="14" height="8" rx="1" style="animation-delay:.40s"/>
+  <rect class="brick" x="49" y="35" width="6"  height="8" rx="1" style="animation-delay:.48s"/>
 
-  <!-- course 2, pattern A -->
-  <rect class="brick" x="9"  y="24" width="14" height="8" rx="1" style="animation-delay:.84s"/>
-  <rect class="brick" x="25" y="24" width="14" height="8" rx="1" style="animation-delay:.96s"/>
-  <rect class="brick" x="41" y="24" width="14" height="8" rx="1" style="animation-delay:1.08s"/>
+  <!-- course 2 (top), pattern A -->
+  <rect class="brick" x="9"  y="24" width="14" height="8" rx="1" style="animation-delay:.56s"/>
+  <rect class="brick" x="25" y="24" width="14" height="8" rx="1" style="animation-delay:.64s"/>
+  <rect class="brick" x="41" y="24" width="14" height="8" rx="1" style="animation-delay:.72s"/>
 
-  <!-- course 3 (top), pattern B -->
-  <rect class="brick" x="9"  y="13" width="6"  height="8" rx="1" style="animation-delay:1.20s"/>
-  <rect class="brick" x="17" y="13" width="14" height="8" rx="1" style="animation-delay:1.32s"/>
-  <rect class="brick" x="33" y="13" width="14" height="8" rx="1" style="animation-delay:1.44s"/>
-  <rect class="brick" x="49" y="13" width="6"  height="8" rx="1" style="animation-delay:1.56s"/>
+  <!-- flag planted on the finished wall -->
+  <rect class="pole" x="31" y="6" width="2" height="19" rx="1"/>
+  <polygon class="flag" points="33,6.5 49,11 33,15.5"/>
 </svg>
