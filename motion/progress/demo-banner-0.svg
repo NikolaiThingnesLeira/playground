@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="64" viewBox="0 0 300 64" role="img" aria-label="Waiting to start">
+  <title>Waiting to start</title>
+  <defs>
+    <!-- Clip the icon area so animations (e.g. the running.svg van drive-off) don't bleed into the text. -->
+    <clipPath id="digg-icon-clip">
+      <rect x="0" y="0" width="64" height="64"/>
+    </clipPath>
+  </defs>
+  <style>
+    .rail   { fill: none; stroke: #E32D22; stroke-width: 2; }
+    .tread  { fill: none; stroke: #E32D22; stroke-width: 1.5; stroke-dasharray: 4 5;
+              animation: digg-belt .9s linear infinite; }
+    @keyframes digg-belt { to { stroke-dashoffset: -9; } }
+    .roller { transform-box: fill-box; transform-origin: center;
+              animation: digg-spin 1s linear infinite; }
+    @keyframes digg-spin { to { transform: rotate(360deg); } }
+    .pkg-a  { animation: digg-slide 2.2s linear       infinite; }
+    .pkg-b  { animation: digg-slide 2.2s linear -1.1s infinite; }
+    .pkg-a rect, .pkg-b rect { fill: none; stroke: #E32D22; stroke-width: 2; }
+    .pkg-a text, .pkg-b text { fill: #E32D22; }
+    @keyframes digg-slide {
+      from { transform: translateX(-40px); }
+      to   { transform: translateX(40px);  }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tread  { animation: none; }
+      .roller { animation: none; }
+      .pkg-a  { animation: none; transform: translateX(-10px); }
+      .pkg-b  { animation: none; transform: translateX(10px);  }
+    }
+    </style>
+  <g clip-path="url(#digg-icon-clip)">
+    <!-- Belt top and bottom rails -->
+  <line class="rail" x1="10" y1="37" x2="54" y2="37"/>
+  <line class="rail" x1="10" y1="47" x2="54" y2="47"/>
+  <!-- Animated belt tread (dashes scroll right) -->
+  <line class="tread" x1="10" y1="37" x2="54" y2="37"/>
+
+  <!-- Left roller with cross spokes -->
+  <g class="roller">
+    <circle cx="10" cy="42" r="5" fill="none" stroke="#E32D22" stroke-width="2"/>
+    <line x1="10" y1="37" x2="10" y2="47" stroke="#E32D22" stroke-width="1.5"/>
+    <line x1="5"  y1="42" x2="15" y2="42" stroke="#E32D22" stroke-width="1.5"/>
+  </g>
+  <!-- Right roller -->
+  <g class="roller">
+    <circle cx="54" cy="42" r="5" fill="none" stroke="#E32D22" stroke-width="2"/>
+    <line x1="54" y1="37" x2="54" y2="47" stroke="#E32D22" stroke-width="1.5"/>
+    <line x1="49" y1="42" x2="59" y2="42" stroke="#E32D22" stroke-width="1.5"/>
+  </g>
+
+  <!-- Package A (no delay) -->
+  <g class="pkg-a">
+    <rect x="26" y="24" width="12" height="13" rx="1"/>
+    <text x="32" y="31"
+          font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="5" font-weight="700"
+          text-anchor="middle" dominant-baseline="central">Digg</text>
+  </g>
+  <!-- Package B (half-period offset — always one package on belt) -->
+  <g class="pkg-b">
+    <rect x="26" y="24" width="12" height="13" rx="1"/>
+    <text x="32" y="31"
+          font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="5" font-weight="700"
+          text-anchor="middle" dominant-baseline="central">Digg</text>
+  </g>
+  </g>
+  <line x1="71" y1="10" x2="71" y2="54" stroke="#E32D22" stroke-width="1" opacity="0.2"/>
+  <text x="82" y="24" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#E32D22" dominant-baseline="central">Waiting to start</text>
+  <text x="82" y="44" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#E32D22" opacity="0.6" dominant-baseline="central">PR environment</text>
+</svg>
